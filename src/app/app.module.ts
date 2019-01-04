@@ -8,10 +8,20 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { AngularFireModule } from "angularfire2";
 
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api } from '../providers';
 import { MyApp } from './app.component';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyAmTlzE_2t0nXHyaOHPZh6NSt_Q2hkhzNE",
+  authDomain: "chatter-up.firebaseapp.com",
+  databaseURL: "https://chatter-up.firebaseio.com",
+  projectId: "chatter-up",
+  storageBucket: "chatter-up.appspot.com",
+  messagingSenderId: "574337287528"
+};
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -41,6 +51,7 @@ export function provideSettings(storage: Storage) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
